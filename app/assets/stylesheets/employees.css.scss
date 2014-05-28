@@ -1,0 +1,127 @@
+// Place all the styles related to the employees controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.employee_handlebar {
+  width:100%;
+  padding:none;
+  background-color:white;
+  .emp_rightside {
+    float:left;
+    width:50%;
+    height:50%;
+  }
+  .emp_leftside {
+    margin-top:4%;
+    padding-left:1%;
+    float:left;
+    width:50%;
+    height:50%;
+  }
+  .emp_singlecolumn {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+.eh_top li {
+  display:inline;
+}
+.section_with_border {
+  padding: 20px;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+}
+.employee_container {
+  border-style:solid;
+  border-width:1px;
+  width:30%;
+  height:200px;
+  float:left;
+  overflow:scroll;
+}
+// table.leftemp{
+//   width:100%;
+//   text-align:center;
+//   td {
+//     width:50%;
+//     text-decoration:none;
+//     color:#db7e84;
+//     border-bottom-color:black;
+//     border-bottom-style:solid;
+//     border-bottom-width:1px;
+//   }
+//   tr:hover {
+//     background-color:#d8ccdb;
+//   }
+//   .titleheader{
+//     color:#db0712;
+//   }
+// }
+
+.primary_details {
+  padding:1%;
+  font-size:130%;
+  color:black;
+  background-color:#FFFFFF;
+  width:100%;
+  float:left;
+}
+.shift_details {
+  padding:1%;
+  float:left;
+  width:100%;
+  .excerpt {
+    margin:1%;
+    padding:1%;
+    color:black;
+    background-color:#57C2B8;
+  }
+}
+.tertiary_details {
+  font-size:110%;
+  text-align:center;
+  padding:1%;
+}
+.quad_details {
+  font-size:105%;
+  text-align:center;
+  padding:1%;
+}
+
+.emp_list_navbar {
+  height:10%;
+  border-bottom-style:solid;
+  border-bottom-width:3px;
+}
+.employee_display {
+  border-style:solid;
+  border-width:1px;
+
+  width: 70%;
+  float:left;
+}
+
+#capsname {
+  color:#277357;
+  font-size:250%;
+}
+
+#gotomysettings:hover {
+  color:#0ec584;
+}
+
+.business_location {
+  width: 50%;
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  font-size: 0.85rem;
+
+  strong {
+    font-weight: bold;
+    color: #42BBD6;
+    font-size: 1.4em;
+  }
+}

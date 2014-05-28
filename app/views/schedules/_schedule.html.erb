@@ -1,0 +1,43 @@
+  <div id="new_schedule_container" style="font-size: 0.8em">
+    <% @weekdays.each_with_index do |day, index| %><!--
+  --><div class="day" id="day_<%= index+1 %>">
+      <div class="day_label"><%= day %></div>
+      <% for i in (@earliest_open.floor...@latest_close.ceil) do %>
+        <% if index == 0 && i >= @earliest_open.floor %>
+          <%= printTime(i) %>
+        <% end %>
+
+        <div class="hour" style="height: 15px;<%= businessClosedClassAdd(@location, day, i, true) %>"></div>
+        <div class="halfhour" style="height: 15px;<%= businessClosedClassAdd(@location, day, (i+0.5), false) %>"></div>
+      <% end %>
+    </div><!--
+  <% end %>
+  --><div id="generated_shifts_container">
+      <% @shifts.each do |s| %>
+        <% @date_offset = getDateOffset(s) %>
+        <% @time_offset = getTimeOffset(s) %>
+        <% @shift_height = getShiftHeight(s) %>
+        <div class="new_shift" id="shift_<%= s.id %>" data-weekday="<%= @date_offset %>" data-start-time="<%= @time_offset %>" data-shift-length="<%= @shift_height %>"><div class="filler"><% s.users.each do |u| %><div class="employee_avatar_clone" id="employee_<%= u.id %>" style="background-image: url('<%= u.image_url.to_s %>');"></div><% end %></div>
+      
+        </div>  
+      <% end %>
+    </div>
+
+    <input type="hidden" id="hours_0_open" value="<%= printTimeFloat(@location.monday_open)%>">
+    <input type="hidden" id="hours_0_close" value="<%= printTimeFloat(@location.monday_close)%>">
+    <input type="hidden" id="hours_1_open" value="<%= printTimeFloat(@location.tuesday_open)%>">
+    <input type="hidden" id="hours_1_close" value="<%= printTimeFloat(@location.tuesday_close)%>">
+    <input type="hidden" id="hours_2_open" value="<%= printTimeFloat(@location.wednesday_open)%>">
+    <input type="hidden" id="hours_2_close" value="<%= printTimeFloat(@location.wednesday_close)%>">
+    <input type="hidden" id="hours_3_open" value="<%= printTimeFloat(@location.thursday_open)%>">
+    <input type="hidden" id="hours_3_close" value="<%= printTimeFloat(@location.thursday_close)%>">
+    <input type="hidden" id="hours_4_open" value="<%= printTimeFloat(@location.friday_open)%>">
+    <input type="hidden" id="hours_4_close" value="<%= printTimeFloat(@location.friday_close)%>">
+    <input type="hidden" id="hours_5_open" value="<%= printTimeFloat(@location.saturday_open)%>">
+    <input type="hidden" id="hours_5_close" value="<%= printTimeFloat(@location.saturday_close)%>">
+    <input type="hidden" id="hours_6_open" value="<%= printTimeFloat(@location.sunday_open)%>">
+    <input type="hidden" id="hours_6_close" value="<%= printTimeFloat(@location.sunday_close)%>">
+
+    <input type="hidden" name="is_manager" id="is_manager" value="<%= current_user.manager %>">
+
+  </div>

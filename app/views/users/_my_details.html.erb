@@ -1,0 +1,29 @@
+<div class="my_deets">
+<% if current_user.shifts.last.nil? %>
+  <div class='ui form segment' id="no_shifts">
+  I have no shifts scheduled currently.
+  </div>
+<% end %>
+</div>
+<% if current_user %>
+    <input type="hidden" name="is_manager" id="is_manager" value="<%= current_user.manager %>">
+<% end %>
+<script>
+$(document).ready(function(){
+  var manager = $("#is_manager").val();
+
+
+  $.ajax({ 
+     url: '/employees/<%= current_user.id %>',
+     type: 'GET',
+     dataType: 'json'
+    }).done(function(data){
+      console.log(manager);
+      if ( manager == "true") {
+        $('.my_deets').html(managerCP(data));
+      } else {
+        $('.my_deets').html(employeeCP(data));
+      }
+  });
+});
+</script>

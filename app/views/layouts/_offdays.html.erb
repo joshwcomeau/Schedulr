@@ -1,0 +1,19 @@
+<%= form_for [@user, @unavailabilities] do |f| %>
+
+  <h2 class="ui left floated header">Days I can't work:</h2><br>
+  
+
+  <%= f.select(:day, options_for_select(["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"])) %>
+
+  <div class='field'>
+  <label>Start: </label>
+   <%= f.time_select :duration_start, :minute_step =>15 %>
+   </div>
+
+  <div class='field'>
+  <label>End: </label> 
+   <%= f.time_select :duration_end, :minute_step =>15 %><br>
+  <%= f.submit id: 'submit_unav', class: 'mini ui button' %>
+  </div>
+  <br>
+  <% end %>

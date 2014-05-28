@@ -1,0 +1,23 @@
+<% @weekdays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %>
+
+<div id="show_schedule_container">
+<!--   <div id="side_panel">
+    <h4>Employee Info</h4>
+  </div> -->
+  <div class="button_next_week_container" style="text-align: left; margin-left: 68px; margin-right: 60px; position: relative; top: -40px;">
+    <div class="ui right labeled icon button" id="view_next_week" style="float: right;">
+      <i class="right arrow icon"></i>
+      Next Week
+    </div>
+
+    <h2 style="color: #57C2B8; text-align: left;">Week of <%= @schedule.week_of %></h2>
+  </div>
+  <%= hidden_field_tag "open_hour", @earliest_open %>
+  <%= hidden_field_tag "close_hour", @latest_close %>
+  <%= render 'schedule' %>
+
+</div>
+
+<div id="filler_div" style="position: relative; height: 75px;"></div>
+
+<input type="hidden" id="page_id" value="show_schedule">

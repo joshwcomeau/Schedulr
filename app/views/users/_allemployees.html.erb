@@ -1,0 +1,16 @@
+<%= render 'layouts/employee_header' %>
+<% @users = User.all %>
+<% @users.each do |x| %>
+<%=link_to employee_path(x), :class => "list_of_all_employees", :'data-schid' => @schedule.id do %>
+  <table class="leftemp">
+    <div id="employee_<%= x.id %>">
+      <tr>
+        <td><%= x.fname %> <%= x.lname %></td>
+        <td><%=x.role%></td>
+      </tr>
+    </div><br>
+  </table> 
+<% end %>
+<% end %>
+
+

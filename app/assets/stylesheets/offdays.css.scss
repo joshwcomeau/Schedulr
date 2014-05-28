@@ -1,0 +1,25 @@
+// Place all the styles related to the offdays controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.offdayz {
+  position:absolute;
+  left:40%;
+  padding-top:10%;
+  .ui.form.segment {
+    margin-left:auto;
+    margin-right:auto;
+  }
+  li {
+    padding:10px;
+  }
+    .mini.ui.button {
+      float:right;
+      font-size:10px;
+    }
+}
+
+.time_select {
+  color:red;
+  height:500px;
+}

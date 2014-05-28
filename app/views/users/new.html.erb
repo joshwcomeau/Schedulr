@@ -1,0 +1,177 @@
+<div class='ui form segment' id="business_registration">
+  <h2>Register Your Business</h2>
+  <% if @user.errors.any? %>
+    <div id="error_explanation", class='ui primary inverted red form segment'>
+      <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for @user, :html => { multipart: true} do |f| %>
+    <h4>Part 1: Personal Information</h4>
+  	
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :fname, "First Name" %>
+        <%= f.text_field :fname, required: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :lname, 'Last Name' %>
+        <%= f.text_field :lname, required: true %>
+      </div>
+    </div>
+    <div class="field">
+      <%= f.label 'Address' %>
+      <%= f.text_field :address, required: true %>
+    </div>
+
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :phone_number, "Telephone Number" %>
+        <%= f.text_field :phone_number, required: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email, 'Email Address' %>
+        <%= f.email_field :email, required: true %>
+      </div>
+    </div>
+
+    <div class="two fields">
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password, required: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, required: true %>
+      </div>
+    </div>
+
+    <div class='ui labeled icon button'>
+      <i class='attachment icon'></i>
+      <%= f.file_field :image %>
+    </div>
+
+    <h4>Part 2: Business Information</h4>
+    <%= fields_for @company do |c| %>
+
+    <% if @company.errors.any? %>
+    <div id="error_explanation", class='ui primary inverted red form segment'>
+      <ul>
+    <% @company.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+      <%= c.label "Business Name:" %>
+      <%= c.text_field :name, required: true %>
+      <br><br>
+    <% end %>
+
+    <%= fields_for @location do |l| %>
+
+      <%= l.label "Location Name:" %>
+      <%= l.text_field :name, required: true %>
+      <br><br>
+
+      <%= l.label "Location Street Address:" %>
+      <%= l.text_field :address, required: true %>
+      <br><br>
+
+      
+      <div id="location_opening_hours_container">
+        <h5>Location Opening Hours:</h4>
+
+        <div class="location_hour_slider_label">
+          <strong>Monday:</strong>
+          <br>
+          <span class="start_label" id="monday_start_label"></span> to <span class="end_label" id="monday_end_label"></span>
+        </div>
+        <div class="location_hour_slider" id="monday_slider">
+        <%= l.hidden_field :monday_open %>
+        <%= l.hidden_field :monday_close %>
+        </div>
+
+        <div class="location_hour_slider_label">
+          <strong>Tuesday:</strong>
+          <br>
+          <span class="start_label" id="tuesday_start_label"></span> to <span class="end_label" id="tuesday_end_label"></span>
+        </div>
+        <div class="location_hour_slider" id="tuesday_slider">
+        <%= l.hidden_field :tuesday_open %>
+        <%= l.hidden_field :tuesday_close %>
+        </div>
+
+        <div class="location_hour_slider_label">
+          <strong>Wednesday:</strong>
+          <br>
+          <span class="start_label" id="wednesday_start_label"></span> to <span class="end_label" id="wednesday_end_label"></span>
+        </div>
+        <div class="location_hour_slider" id="wednesday_slider">
+        <%= l.hidden_field :wednesday_open %>
+        <%= l.hidden_field :wednesday_close %>
+        </div>
+
+        <div class="location_hour_slider_label">
+          <strong>Thursday:</strong>
+          <br>
+          <span class="start_label" id="thursday_start_label"></span> to <span class="end_label" id="thursday_end_label"></span>
+        </div>
+        <div class="location_hour_slider" id="thursday_slider">
+        <%= l.hidden_field :thursday_open %>
+        <%= l.hidden_field :thursday_close %>
+        </div>
+
+        <div class="location_hour_slider_label">
+          <strong>Friday:</strong>
+          <br>
+          <span class="start_label" id="friday_start_label"></span> to <span class="end_label" id="friday_end_label"></span>
+        </div>
+        <div class="location_hour_slider" id="friday_slider">
+        <%= l.hidden_field :friday_open %>
+        <%= l.hidden_field :friday_close %>
+        </div>
+
+
+        <div class="location_hour_slider_label">
+          <strong>Saturday:</strong>
+          <br>
+          <span class="start_label" id="saturday_start_label"></span> to <span class="end_label" id="saturday_end_label"></span>
+        </div>
+        <div class="location_hour_slider" id="saturday_slider">
+        <%= l.hidden_field :saturday_open %>
+        <%= l.hidden_field :saturday_close %>
+        </div>
+
+        <div class="location_hour_slider_label">
+          <strong>Sunday:</strong>
+          <br>
+          <span class="start_label" id="sunday_start_label"></span> to <span class="end_label" id="sunday_end_label"></span>
+        </div>
+        <div class="location_hour_slider" id="sunday_slider">
+        <%= l.hidden_field :sunday_open %>
+        <%= l.hidden_field :sunday_close %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= f.hidden_field :manager, value: "true" %>
+    <%= f.hidden_field :role, value: "manager" %>
+    
+    <%= hidden_field_tag "employee_registration", false %>
+
+    <div id="submit_container">
+      <%= f.submit 'Submit', value: "Register Business", class: 'ui green button down' %>
+    </div>
+  <% end %>
+</div>
+
+<input type="hidden" id="page_id" value="new_business">

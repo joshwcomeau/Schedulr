@@ -1,0 +1,496 @@
+// Place all the styles related to the schedules controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  overflow-x: hidden;
+  font-family: cabin, sans-serif;
+}
+
+@mixin sans-font {
+  font-family: cabin, sans-serif;
+}
+#schedule_header {
+  text-align: center;
+  line-height: 65px;
+  height: 65px;
+  font-size: 48px;
+  font-weight: bold;
+  margin-top:1rem;
+  margin-bottom: 20px;
+}
+#schedule_container {
+  position: relative;
+  z-index: 5;
+  width: 70%;
+  margin: 50px auto;
+  background: #FFF;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#schedule_container .day {
+  display: inline-block;
+  position: relative;
+  z-index: 5;
+  border-left: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
+}
+  #schedule_container>:first-child {
+    border-left: 1px solid #CCC;
+  }
+  #day_7 {
+    border-right: 1px solid #CCC;
+  }
+
+  #schedule_container .day_label {
+    position: absolute;
+    width: 110%;
+    left: -5%;
+    top: -25px;
+    background: #333;
+    color: #FFF;
+    text-align: center;
+    line-height: 25px; 
+    height: 25px; 
+  }
+
+#schedule_container .hour {
+  padding: 5px;
+  height: 25px;
+  background: #F3F3F3;
+  border-bottom: 1px solid #E2E2E2;
+}
+  .hour:not(:first-child) {
+    border-top: 1px solid #DDD;
+  }
+#schedule_container .halfhour {
+  padding: 5px;
+  height: 25px;
+  background: #FCFCFC;
+}
+#schedule_container .hour_label {
+  position: absolute;
+  left: -80px;
+  width: 80px;
+  margin-top: -6px;
+  text-align: right;
+  color: #BBB;
+
+  & > .am_pm_label {
+    font-size: 0.75em;
+  }
+}
+
+
+#shift_container {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+#generated_shifts_container {
+  position: absolute;
+  z-index: 100;
+  top: 0px;
+  width: 100%;
+  height: 100%;  
+
+}
+.new_shift_times {
+  width: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.shift {
+  position: absolute;
+  opacity: 0.25;
+  z-index: 10;
+  background: #F00;
+  cursor: pointer;
+}
+  .shift:hover {
+    opacity: 0.8;
+  }
+.new_shift {
+  position: absolute;
+  z-index: 10;
+  box-sizing: content-box;
+  
+  & > .filler {
+    position: absolute;
+    z-index: 50;
+    width: 98%;
+    height: 100%;
+    left: 1%;
+    border: 1px solid #888;
+    background: rgba(0,212,245, 0.25);
+
+  }
+  
+  & > .close {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    top: -3px;
+    color: #000;
+    font-weight: bold;
+    padding: 5px;
+    cursor: pointer;
+
+    &:hover {
+      color: #F00;
+    }
+  }
+
+  // &:hover {
+  //   background: rgba(0,212,245, 0.8);
+  // }
+
+  &:hover > .close {
+    display: block;
+  }
+}
+
+
+
+#make_new_schedule_container, #show_schedule_container {
+  @include sans-font;  
+  margin: 0 auto;
+  position: relative;
+  padding-top: 20px;
+
+  h2 {
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: bold;
+  }
+}
+
+#new_schedule_submit_container {
+  position: fixed;
+  bottom: 0px;
+  right: 20px;
+  width: 320px;
+  background: rgba(0,0,0,0.05);
+  padding: 10px;
+  text-align: center;
+}
+#side_panel {
+  position: fixed;
+  right: 20px;
+  top: 0;
+  width: 320px;
+  height: 100%;
+  padding: 50px 30px;
+  border-radius: 4px;
+  text-align: center;
+  overflow: auto;
+  
+  &:hover {
+    background: #FAFAFA;
+  }
+  
+  & > h4 {
+    font-size: 1.5em;
+    font-weight: bold;
+  }  
+
+
+
+
+  #shift_slider_label {
+    margin: 20px 0px;
+
+    & > div {
+      width: 50%;
+      float: left;
+    }
+  }
+
+  #shift_slider {
+
+    .ui-slider-handle {
+      outline: none;
+    }
+    .ui-slider-range {
+      background: #42BBD6;
+    }
+  }
+
+  #new_shift_start, #new_shift_end {
+    width: 50%;
+    padding: 10px;
+    float: left;
+    font-size: 0.8em;
+  }
+
+  
+
+  #new_shift_days {
+    clear: both;
+    padding-top: 10px;
+    margin-top: 50px;
+
+    #new_shift_checkbox_container {
+      border-top: 1px solid #CCC;
+      border-radius: 5px 5px 0px 0px;
+      margin: 10px 0px 0px 0px; 
+      padding-top: 10px;
+      overflow: auto;
+      background: rgba(0,0,0,0.02);
+
+      & > div {
+        float: left;
+        width: 50%;
+        padding: 4px;
+        font-size: 0.75em;
+        text-align: left;
+      }
+
+      .day_checkbox_label {
+        margin-left: -6px;
+        display: block;
+      }
+    }
+    #new_shift_checkbox_bulk {
+      border-radius: 0px 0px 5px 5px;
+      background: #666;
+      margin-bottom: 20px;
+      line-height: 30px;
+      padding: 0px 5px;
+      color: #FFF;
+      font-size: 0.6em;
+      text-align: center;
+
+      #quick_select {
+        text-align: center;
+        height: 23px;
+        line-height: 23px;
+      }
+
+      .field {
+        display: inline-block;
+      }
+
+      strong {
+        font-weight: bold;
+      }
+
+      label {
+        padding: 0px 5px;
+        display: inline-block;
+      }
+      label:hover {
+        background: rgba(255,255,255,0.2);
+      }
+    }
+  }
+}
+.modal_time_block {
+  margin: 5px 0px;
+  padding: 10px 5px;
+  border-bottom: 1px dotted #AAA;
+}
+.modal_una_day {
+  font-size: 1.5em;
+}
+.modal_una_time {
+  font-size: 1.5em;
+  color: #42BBD6;
+}
+
+#save_employees_button_container {
+  position: absolute;
+  display: none;
+  top: -80px;
+  right: 10px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+
+#employees_roster_spacefiller {
+  display: none;
+  position: relative;
+  z-index: 0;
+  height: 175px;
+}
+#employees_roster {
+  display: none;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 500;
+  border-top: 2px solid #FFF;
+  box-shadow: 0px -3px 10px -6px rgba(0,0,0,0.5);
+
+
+  #title_n_tabs {
+    text-align: center;
+    overflow: auto;
+    background: #CCC;
+    box-shadow: 0px 2px 5px -3px rgba(0,0,0,0.5);
+    border-top: 1px solid #AAA;
+
+    & > #tab_header {
+      float: left;
+      width: 33%;
+      padding: 8px;
+      background: #EEE;
+      border-radius: 10px 10px 0px 0px;
+    }
+    & > #tab_filter {
+      float: left;
+      width: 67%;
+      text-align: right;
+      padding: 2px 6px ;
+      font-size: 0.8rem;
+    }
+  }
+
+
+  #employee_info {
+  position: absolute;
+  background: rgba(255,255,255,0.8);
+  left: 10px;
+  top: -60px;
+  min-width: 200px;
+  height: 50px;
+  padding: 5px;
+  text-align: center;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+
+  }  
+  #employee_container {
+    height: 105px;
+  background: #aaaaaa; /* Old browsers */
+  background: -moz-linear-gradient(top,  #aaaaaa 0%, #888888 99%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#aaaaaa), color-stop(99%,#888888)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #aaaaaa 0%,#888888 99%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #aaaaaa 0%,#888888 99%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #aaaaaa 0%,#888888 99%); /* IE10+ */
+  background: linear-gradient(to bottom,  #aaaaaa 0%,#888888 99%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#aaaaaa', endColorstr='#888888',GradientType=0 ); /* IE6-9 */
+  }
+}
+
+#get_week_and_location_backdrop {
+  position: fixed;
+  z-index: 10000;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  background: #FFF;
+
+  #get_week_and_location_container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 40px auto;
+    width: 800px;
+    text-align: center;
+
+    h2 {
+      font-weight: bold;
+      font-size: 4rem;
+      margin-bottom: 1em;
+    }
+
+    h4 {
+      font-size: 2rem;
+      margin-top: 1em;
+      margin-bottom: 0.25em;
+
+    }
+  }
+
+  #update_starting_button_container {
+    margin-top: 2rem;
+  }
+}
+
+#finished_employees {
+  display: none;
+  position: fixed;
+  z-index: 6000;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(35,35,35,0.95);
+  text-align: center;
+
+  #success_text {
+    position: absolute;
+    width: 600px;
+    height: 200px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+
+    h2 {
+      font-size: 3rem;
+
+      color: #FFF;
+    }
+
+    p, a, a:visited {
+      color: #CCC;
+      margin-top: 25px;
+    }
+  }
+}
+
+.employee_avatar {
+  position: relative;
+  z-index:5000;
+  width: 60px;
+  height: 60px;
+  margin: 5px;
+  background-size: cover;
+  border-radius: 4px;
+  display: inline-block;
+  box-shadow: 1px 1px 0px rgba(0,0,0,0.25);
+}
+// Style for dropped employee avatars during employee-shift assignment.
+.employee_avatar_clone {
+  @extend .employee_avatar;
+  width: 30px;
+  height: 30px;
+  margin: 3px;
+}
+#new_schedule_container {
+  @extend #schedule_container;
+  width: 100%;
+  margin: 10px 0px 0px 80px;
+
+}
+
+#show_schedule_container {
+  position: relative;
+  margin-top: 40px;
+}
+
+.closed {
+  background-color: #000;
+  border: 1px solid #F00;
+}

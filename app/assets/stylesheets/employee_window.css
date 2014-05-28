@@ -1,0 +1,12 @@
+#employee_tabs {
+	position:relative;
+	left:300px;
+}
+
+.et {
+}
+
+.et li {
+	list-style:none;
+	display: inline;
+}

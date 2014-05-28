@@ -1,0 +1,48 @@
+<% if current_user %>
+     <%= render 'users/my_details' %> 
+<% else %>
+<div id='landing_page'>
+  <div id='lp_header'>
+    <h2 class='ui header'>Managing Part Time Employee Shifts Has Never Been So Easy</h2>
+  </div>
+  <div class='ui divider horizontal icon'>
+    <i class='info icon'></i>
+  </div>
+  <div class='ui message icon' id='salespitch'>
+    <i class='calendar icon'></i>
+    <ol class='ui list' id='selllist'>
+      <li>Register Your Business in 1.5 Minutes</li>
+      <li>Create This Weeks Schedule in 1 Minute</li>
+      <li>Drag & Drop Your Employees on the Schedule in 30 seconds</li>
+    </ol> 
+  </div>
+  <%= link_to new_user_path, id: 'landing_page_regis_button' do %>
+  <div class="ui massive button"  id='shotbutton'>
+     Give it a Shot!
+  </div>
+  <% end %>
+   
+  <div class="ui message">
+    <div class="header lp_title">
+      CEO Taha Jalil @ ThinkFit.me <%= image_tag('taha.png', class:'circular ui image', size: '100x100', :id => 'tahapic') %>
+      <p class='lp_text'>"One of the most amazing, time saving tools out there. At ThinkFit, we have hundreds of part timers in our support center. With the Schedulr, hours upon hours of work to organize shifts turns into seconds."</p>  
+    </div>
+  </div>  
+
+  <div class="ui message">
+    <div class="header lp_title">
+      Co-Founder Jon Money @ WaySweeter <%= image_tag('jon.png', class:'circular ui image', size: '100x100', :id => 'jonpic') %>
+      <p class='lp_text'>"As a professional developer, the level of craftsmenship for Schedulr induces an immediate respect. The team behind the Schedulr have set a new standard for SaaS."</p>  
+    </div>
+  </div> 
+
+  <div class="ui message">
+    <div class="header lp_title">
+      Entrepreneur Steve Stevesons @ Givr <%= image_tag('steve.png', class:'circular ui image', size: '100x100', :id => 'stevepic') %>
+      <p class='lp_text'>"Over here at Givr, we actively recommend the Schedulr for all our partners in combination with our own service to deliver beyond atypical client expectations. Stepping up our game with the support of the Schedulr is skyrocketing our company to exponential success."</p>  
+    </div>
+  </div>
+ 
+</div>
+
+<% end %>

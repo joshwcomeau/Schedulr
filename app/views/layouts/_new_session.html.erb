@@ -1,0 +1,23 @@
+<div class="new_login_session">
+<h1>Log In!</h1>
+
+<% if flash[:alert] %>
+	<h2 style="color: red"><%= flash[:alert] %></h2>
+<% end %>
+
+<%= form_tag sessions_url do  %>
+  <div class="field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email] %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Log in" %>
+  </div>  
+<% end %>
+</div>

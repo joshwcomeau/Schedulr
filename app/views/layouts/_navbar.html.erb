@@ -1,0 +1,110 @@
+<nav class='top-bar'>
+	<section class='big_logo'>
+	  <%= link_to 'Schedulr', root_path %>
+	</section>
+
+  <section id='edit_my_profile'>
+  <% if current_user && !current_user.manager %>
+  <div class="ui animated fade button">
+    <div class="visible content">
+      <%= button_to "Change my Availability", new_user_unavailability_path(current_user), id: :edit_my_profile_button, :method => 'get' %>
+    </div>
+    <div class="hidden content">
+        <%= link_to new_user_unavailability_path(current_user), id: :edit_my_profile_button, :method => 'get' do %>
+          <i class='time icon'></i>
+         <% end %> 
+    </div>
+  </div>
+  <% end %>
+  </section>
+  <section id='check_my_schedule'>
+   <div class="ui animated fade button">
+    <div class="visible content">
+      <% if current_user && current_user.shifts.count != 0 %>
+        <%= button_to "Check my Schedule", '#', id: :check_my_schedule_button, :method => 'get' %>  
+    </div>
+    <div class="hidden content">
+      <%= link_to schedule_path(Date.commercial(2014, current_user.current_week_num)), id: :check_my_schedule_button, :method => 'get' do %>
+      <i class='table icon'></i>
+      <% end %> 
+    </div>
+  </div>
+  <% end %>
+  </section>
+  <section id='create_new_schedule'>
+    <div class="ui animated fade button">
+      <div class="visible content">
+        <% if current_user && current_user.manager %>
+          <%= button_to "Create a New Schedule", new_schedule_path, id: :create_new_schedule_button, :method => 'get' %>  
+      </div>
+    <div class='hidden content'>
+      <%= link_to new_schedule_path, id: :create_new_schedule_button, :method => 'get' do %>
+         <i class='calendar icon'></i>
+      <% end %> 
+    </div>
+  </div>
+  <% end %>
+  </section>
+	<section class='login_details'>
+		<% if current_user %>
+			<%= link_to current_user.email, edit_user_path(current_user), id: :myself %> | <%= link_to 'Log out', session_path(current_user), id: :logout, method: :delete %>
+		<% else %>
+      <div id="login_links">
+        <%= link_to "Login", new_session_path, id: "show_login_form" %> or <%= link_to "Register", new_user_path %>
+      </div>
+
+      <div id="login_form">
+        <div class='ui form'>
+          <div class="inline fields">
+            
+            <div class="field">
+              <%= form_tag sessions_url do  %>
+              <%= text_field_tag :email, params[:email], placeholder: "Email Address" %>
+            </div>
+            <div class="field">
+              <%= password_field_tag :password, placeholder: 'test', class: 'pwfield' %>
+            </div>
+            <div class='ui tiny vertical animated button'>
+              <div class='visible content'>
+                Log in
+              </div>
+              <div class='hidden content'>
+                <%= image_submit_tag('rightarrow.png', class: 'rightarrow') %>
+              </div>
+            </div>
+            <div class='ui tiny vertical animated button'>
+              <div class='visible content'>
+                Register
+              </div>
+              <div class='hidden content'>
+                <%= link_to image_tag('rightarrow.png', class: 'rightarrowinvert'), new_user_path %>
+              </div>
+            </div>
+            <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>	
+	</section>
+
+
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

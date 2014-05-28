@@ -1,0 +1,29 @@
+<div class="employee_handlebar">
+	<nav class="primary_details">
+		{{fname}} {{lname}} {{email}} "{{role}}"
+	</nav>
+	<nav class="shift_details">
+		Shifts scheduled for this week (id: {{current_schedule}}):
+		<ul>
+			{{#each shifts}}
+			<li class="excerpt">{{id}}: {{shiftStart}} --- {{shiftEnd}}. Total hours: {{shiftHours}}</li>
+			{{/each}}
+		</ul>
+	</nav>
+	<nav class="tertiary_details">
+    <nav id="hours_graph"></nav>
+  </nav>
+  <nav class="tertiary_details">
+    <nav id="shifts_graph"></nav>
+  </nav>
+	<nav class="hours_graph">
+	<div id="mydiv" data-for-graph="{{ totalHoursThisWeek }} {{totalHoursLastWeek}} {{totalHoursTwoWeeksAgo}} {{totalShiftsScheduledFor}}"></div>
+	</nav>
+</div>
+
+<script>
+$(document).ready(function(){
+  new Chartkick.BarChart("hours_graph", [["Hours this week", {{ totalHoursThisWeek }}],["Last week",{{ totalHoursLastWeek }}],["Two weeks ago",{{ totalHoursTwoWeeksAgo }}]]);
+  new Chartkick.PieChart("shifts_graph", [["My shifts this week",{{totalShiftsScheduledFor}}],["Total shifts this week",{{totalShiftsThisWeek}}]]);
+});
+</script>

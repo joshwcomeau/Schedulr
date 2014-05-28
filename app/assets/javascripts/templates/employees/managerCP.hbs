@@ -1,0 +1,27 @@
+<div class="employee_handlebar">
+<div class='emp_singlecolumn'>
+  <nav class="primary_details">
+    <nav id='capsname'>{{company}}</nav> 
+    <br>
+    <nav class='ui segment'>
+      <div class='ui label' style="float:right;">Edit Manager Info
+        <a href='/users/{{id}}/edit' id="gotomysettings"><i class='circular file outline icon'></i></a>  
+      </div>    
+      <span style="font-size: 0.7rem">Schedule Manager:</span> <br>
+      {{fname}} {{lname}}
+      
+    </nav>
+  </nav>
+  <nav class="shift_details">
+    Business Locations:
+    <ul>
+      {{#each locations}}
+      <li class="business_location">
+        <strong>{{name}}</strong><br>
+        {{address}}
+      </li>
+      {{/each}}
+    </ul>
+  </nav>
+</div>
+</div>

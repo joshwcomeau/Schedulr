@@ -1,0 +1,23 @@
+<div class='offdayz'>
+  <div class='ui form segment'>
+    <%= render 'layouts/offdays' %>
+  </div>
+  <div class='ui form segment'>
+    <div class='days_im_off'>
+      <h2 class='ui left floated header'>Days I asked to be off: </h2><br>
+      <% @user.unavailabilities.each do |unav| %>
+        <% if unav.id.nil? %>
+        <% else %>
+        <ul>
+          <div class='ui divider'></div>
+          <li><%= unav.day %>                
+          <%= unav.duration_start.to_formatted_s(:time) %>
+              until   
+          <%= unav.duration_end.to_formatted_s(:time) %>
+          <%= link_to 'delete', [@user, unav], class: 'mini ui button', method: :delete %></li>
+          </ul>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

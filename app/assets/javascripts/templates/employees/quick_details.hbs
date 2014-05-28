@@ -1,0 +1,13 @@
+<div class="employee_handlebar">
+  <nav class="primary_details">
+    {{fname}} {{lname}} {{email}} "{{role}}"
+  </nav>
+  <nav class="shift_details">
+  Has requested to be off for:
+  {{#each unavailabilities}}
+  <ul>
+    <li class="excerpt"> {{day}}s @ {{durationStart}} until {{durationEnd}}</li>
+  {{/each}}
+  </ul>
+  </nav>
+</div>

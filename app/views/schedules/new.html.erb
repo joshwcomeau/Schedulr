@@ -1,0 +1,195 @@
+<% @weekdays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'] %>
+<div id="finished_employees">
+  <div id="success_text">
+    <h2>Schedule Saved.</h2>
+    <p>This schedule has been posted to your employees.</p>
+    <br><br><br>
+    <p><%= link_to "Return to Control Panel", root_path %></p>
+  </div>
+</div>
+
+<div id="get_week_and_location_backdrop">
+  <div id="get_week_and_location_container">
+    <h2>Create New Schedule
+    <h4>What week should this schedule be for?</h4>
+    <div class="ui selection dropdown">
+      <input type="hidden" name="week_of_select" id="week_of_select">
+      <div class="default text" style="width: 300px;">Select Date</div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="item" data-value="2014-5-12">Monday, May 12 - Sunday, May 18</div>
+        <div class="item" data-value="2014-5-19">Monday, May 19 - Sunday, May 25</div>
+        <div class="item" data-value="2014-5-26">Monday, May 26 - Sunday, June 2</div>
+        <div class="item" data-value="2014-6-3">Monday, June 3 - Sunday, June 9</div>
+
+      </div>
+    </div>
+
+    <h4>What location is this schedule for?</h4>
+    <div class="ui selection dropdown">
+      <input type="hidden" name="location_select" id="location_select">
+      <div class="default text" style="width: 300px;">Select Location</div>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <% @locations.each do |l| %>
+          <div class="item" data-value="<%= l.id %>"><%= l.name %></div>
+        <% end %>
+
+
+      </div>
+    </div>
+
+
+    <div id="update_starting_button_container">
+      <div class="ui green button" id="update_starting_stats">
+        Create Schedule
+      </div>
+      <!-- <input type="button" id="update_starting_stats" value="Create schedule"> -->
+    </div>
+  </div>
+</div>
+
+<h2 id="schedule_header">Create New Schedule</h2>
+<div id="make_new_schedule_container">
+  <div id="side_panel">
+    <h4>Add New Shift</h4>
+
+    <div id="shift_slider_label">
+      <strong>New Shift:</strong> <span id="start_label"></span> to <span id="end_label"></span>
+    </div>
+    <div id="shift_slider"></div>
+    <input type="hidden" name="shift_start_time" id="shift_start_time" value="">
+    <input type="hidden" name="shift_end_time" id="shift_end_time" value="">
+
+    <div id="new_shift_days">
+      <h4>Select Applicable Days:</h4>
+      
+      <div id="new_shift_checkbox_container">
+        <% 7.times do |i| %>
+        <div class="ui form">
+          <div class="inline field">
+            <div class="ui toggle checkbox">
+              <input type="checkbox" id="day_<%= i %>" class="day_checkbox">
+              <label><%= @weekdays[i] %></label>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <div id="new_shift_checkbox_bulk">
+        <div id="quick_select"><strong>Quick Select:</strong></div>
+        <label><input type="radio" name="quickselect" id="day_all" class="day_radio" value="all">All</label>
+        <label><input type="radio" name="quickselect" id="day_weekday" class="day_radio" value="weekdays">Weekdays</label>
+        <label><input type="radio" name="quickselect" id="day_weekend" class="day_radio" value="weekend">Weekend</label>
+        <label><input type="radio" name="quickselect" id="day_none" class="day_radio" value="none">None</label>
+
+
+
+      </div>
+
+    </div>
+
+    <div class="ui labeled icon teal button" id="add_shift" style="width: 100%;">
+      <i class="plus icon"></i>
+      Add Shift
+    </div>
+
+    <div id="new_schedule_submit_container">
+      <%= form_tag schedules_path, id: 'save_schedule_form' do %>
+
+        <%= hidden_field_tag "week_of", "" %>
+        <%= hidden_field_tag "location_id", "" %>
+        <%= hidden_field_tag "open_hour", @earliest_open %>
+        <%= hidden_field_tag "close_hour", @latest_close %>
+        <%= hidden_field_tag "company_id", current_user.company.id %>
+        <div class="ui labeled icon green button" id="save_schedule_button" style="width: 260px;">
+          <i class="save icon"></i>
+          Save Shifts
+        </div>
+
+      <% end %>
+    </div>
+    
+
+    
+  </div>
+
+
+  <%= render "schedule" %>
+
+
+
+
+
+
+  <div id="employees_roster_spacefiller"></div>
+  <div id="employees_roster">
+    <div id="save_employees_button_container">
+      <%= form_tag shifts_path, id: 'save_shifts_form' do %>
+        <div class="ui labeled icon green huge button" id="save_employees_button">
+          <i class="save icon"></i>
+          Save Schedule
+        </div>
+      <% end %>  
+    </div>
+
+
+    <div id="employee_container">
+      <div id="title_n_tabs">
+        <div id="tab_header" class="active">
+          <h4>All Employees</h4>
+        </div>
+        <div id="tab_filter">
+            <div class="ui left icon input">
+              <input type="text" placeholder="Find an employee..." style="padding: 0.30em 1em;" id="name_filter">
+              <i class="users icon" style="padding-top: 0.5em;"></i>
+            </div>
+        </div>
+
+      </div>
+
+      
+      <% @users = @company.users %>
+      <% @users.each do |user| %>
+        <%=link_to employee_path(user), :class => "employee_avatar_box" do %><div class="employee_avatar" id="employee_<%= user.id %>" data-fname="<%= user.fname.downcase %>" data-lname="<%= user.lname.downcase %>" style="background-image: url('<%= user.image_url.to_s %>');">
+          </div><% end %>
+      <% end %>
+
+
+
+
+
+<input type="hidden" id="page_id" value="new_schedule">
+
+
+
+
+
+
+
+<div class="ui basic small modal" id="employee_detail_modal">
+  <i class="close icon"></i>
+  <div class="header" style="font-size: 3.5rem; margin-bottom: -30px;">
+    <span id="modal_first_name"></span> <span id="modal_last_name"></span>
+  </div>
+  <div class="content">
+    <div class="left" style="width: 20%;">
+      <img src="" id="modal_avatar" style="width: 100%; border-radius: 20px;">
+    </div>
+    <div class="right">
+      <div class="modal_role_container" style="margin-bottom: 25px; font-size: 1.5rem;">Role: <span id="modal_role"></span></div>
+      <span class="modal_available" id="unavailability_header">Available for all shifts this week.</span>
+
+      <div id="modal_una_holder" style="font-size: 0.75em;">
+
+      </div>
+
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui green button">OK</div>
+  </div>
+</div>
+
+
+

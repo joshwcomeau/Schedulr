@@ -1,0 +1,67 @@
+<div class ='ui form segment' style="width: 50%; margin: 0 auto;">
+<h2 style="font-size: 1.8rem; text-align: center;margin-bottom: 25px;">Register as an employee for <span style="color: #42BBD6;"><%= @company.name %></span></h2><br>
+
+<%= form_for @user, :html => { multipart: true} do |f| %>
+  
+  <div class="two fields">
+    <div class="field">
+      <%= f.label :fname, "First Name" %>
+      <%= f.text_field :fname, required: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :lname, 'Last Name' %>
+      <%= f.text_field :lname, required: true %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label 'Address' %>
+    <%= f.text_field :address, required: true %>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <%= f.label :phone_number, "Telephone Number" %>
+      <%= f.text_field :phone_number, required: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, 'Email Address' %>
+      <%= f.email_field :email, required: true %>
+    </div>
+  </div>
+
+  <div class="two fields">
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, required: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, required: true %>
+    </div>
+  </div>
+
+  <div class="two fields" style="margin-top: 25px;">
+    <div class="field">
+      <div class='ui labeled icon button'>
+        <i class='attachment icon'></i>
+        <%= f.file_field :image %>
+      </div>
+    </div>
+
+    <div id="submit_container" class="field" style="text-align: right;">
+      <%= f.submit 'Submit', value: "Register", class: 'ui large green button' %>
+    </div>
+  </div>
+
+  <%= hidden_field_tag "employee_registration", true %>
+
+  <%= f.hidden_field :company_id, value: params[:id] %>
+  <%= f.hidden_field :role, value: "Employee" %>
+
+
+<% end %>
+</div>

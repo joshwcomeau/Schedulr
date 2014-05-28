@@ -1,0 +1,31 @@
+<% if current_user %>
+     <%= render 'users/my_details' %> 
+<% else %>
+
+<div class="new_login_session">
+<% if flash[:alert] %>
+  <h2 style="color: red"><%= flash[:alert] %></h2>
+<% end %>
+
+<%= form_tag sessions_url do  %>
+
+  <div class="field">
+    <%= label_tag :email, nil, class: 'login_label' %><br>
+    <%= image_tag('email_icon.png', class: 'email_icon') %><%= text_field_tag :email, params[:email], class: 'login_field' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password, nil, class: 'login_label' %><br>
+    <%= image_tag('login_key.png', class: 'login_icon') %>
+    <%= password_field_tag :password, nil, class: 'login_field' %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Log in", id: 'login_button' %>
+    <% end %>
+    <%= button_to "New User", new_user_url, method: :get, id: 'create_button' %>
+  </div> 
+
+</div>
+
+<% end %>

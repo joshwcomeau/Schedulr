@@ -1,0 +1,55 @@
+<div class="employee_handlebar">
+<div class='emp_leftside'>
+  <nav class="primary_details">
+    <nav id='capsname'>{{fnameCAP}} {{lnameCAP}} </nav> 
+    <div class='ui label' style="float:right;">Settings
+      <a href='/users/{{id}}/edit' id="gotomysettings"><i class='circular file outline icon'></i></a>  
+    </div>
+    <br>
+    <nav class='ui segment'>
+    "{{role}}" <br><br>
+    {{email}} <br><br>
+    {{address}} <br><br>
+    {{phone_number}} 
+    </nav>
+  </nav>
+  <nav class="shift_details">
+    Shifts scheduled for this week:
+    <ul>
+      {{#each shiftsThisWeek}}
+      <li class="excerpt">{{shiftStart}} --- {{shiftEnd}}. Total hours: {{shiftHours}}</li>
+      {{/each}}
+    </ul>
+  </nav>
+  <nav class="shift_details">
+  I've requested to be off for:
+  {{#each unavailabilities}}
+  <ul>
+    <li class="excerpt"> {{day}}s @ {{durationStart}} until {{durationEnd}}</li>
+  {{/each}}
+  </ul>
+  </nav>
+  </div>
+
+  <div class='emp_rightside'>
+  <nav class="tertiary_details">
+    <nav id="hours_graph"></nav>
+  </nav>
+  <nav class="quad_details">
+    <nav id="shifts_graph"></nav>
+  </nav>
+  </div>
+   
+ </div> 
+  <div id="mydiv" data-for-graph="{{ totalHoursThisWeek }} {{totalHoursLastWeek}} {{totalHoursTwoWeeksAgo}} {{totalShiftsScheduledFor}}"></div>
+  
+
+<script>
+$(document).ready(function(){
+
+  new Chartkick.BarChart("hours_graph", [["Hours this week", {{ totalHoursThisWeek }}],["Last week",{{ totalHoursLastWeek }}],["Two weeks ago",{{ totalHoursTwoWeeksAgo }}]], {"colors": ["#14635E","#35A797"]});
+
+  new Chartkick.PieChart("shifts_graph", [["My shifts this week",{{totalShiftsScheduledFor}}],["Total other shifts this week",{{totalShiftsThisWeek}}]],{"colors": ["#14635E","#35A797"]});
+  
+});
+</script>
