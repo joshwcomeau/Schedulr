@@ -4,11 +4,7 @@ class SchedulesController < ApplicationController
   def show
     @schedule_day_formatted = Date.iso8601(params[:id])
     @schedule = Schedule.where("week_of = ?", @schedule_day_formatted).first
-
     @shifts = @schedule.shifts
-
-    puts "SCHEDULE:\n\n"
-    puts @schedule.location
 
 
     @location = @schedule.location
@@ -34,8 +30,6 @@ class SchedulesController < ApplicationController
     shiftData = []
 
     shiftIDs = []
-
-    puts scheduleData
 
     for i in (1...params['schedule'].length)
       shiftData << params['schedule'][i.to_s]

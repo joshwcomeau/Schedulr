@@ -4,32 +4,22 @@
 	</section>
 
   <section id='edit_my_profile'>
-  <% if current_user && !current_user.manager %>
-  <div class="ui animated fade button">
-    <div class="visible content">
-      <%= button_to "Change my Availability", new_user_unavailability_path(current_user), id: :edit_my_profile_button, :method => 'get' %>
-    </div>
-    <div class="hidden content">
-        <%= link_to new_user_unavailability_path(current_user), id: :edit_my_profile_button, :method => 'get' do %>
-          <i class='time icon'></i>
-         <% end %> 
-    </div>
-  </div>
-  <% end %>
+    <% if current_user && !current_user.manager %>
+
+      <%= link_to "Change Availability", new_user_unavailability_path(current_user), class: "ui small teal button", id: "change_availability_button" %>
+
+    <% end %>
   </section>
   <section id='check_my_schedule'>
-   <div class="ui animated fade button">
-    <div class="visible content">
-      <% if current_user && current_user.shifts.count != 0 %>
-        <%= button_to "Check my Schedule", '#', id: :check_my_schedule_button, :method => 'get' %>  
+    <div class="ui blue labeled icon top left pointing dropdown small button" id="view_schedule_button">
+      <i class="calendar icon"></i>
+      <span class="text">View Schedule</span>
+      <div class="menu">
+        <div class="item"><i class="edit icon"></i>Edit</div>
+        <div class="item"><i class="delete icon"></i>Remove</div>
+        <div class="item"><i class="hide icon"></i>Hide</div>
+      </div>
     </div>
-    <div class="hidden content">
-      <%= link_to schedule_path(Date.commercial(2014, current_user.current_week_num)), id: :check_my_schedule_button, :method => 'get' do %>
-      <i class='table icon'></i>
-      <% end %> 
-    </div>
-  </div>
-  <% end %>
   </section>
   <section id='create_new_schedule'>
     <div class="ui animated fade button">

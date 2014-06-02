@@ -1,108 +1,104 @@
-@mixin sans-font {
-  font-family: hammersmith-one, sans-serif;
-}
+// @mixin sans-font {
+//   font-family: hammersmith-one, sans-serif;
+// }
 
-.top-bar {
-  z-index:5;
- 	background-color: black;
- 	color:white;	
- 	height:100%;
- 	width:100%;
- 	display:inline-block;
- 	padding: 1.5%;
- 	.big_logo {
-    @include sans-font;
- 		font-size: 2rem;
-    font-weight: bold;
- 		float: left; 
- 		a{
- 			text-decoration: none;
- 			color:white;
- 		}
-    a:hover {
-      color:#06ac71;
-    }
- 	}
-  #check_my_schedule {
-    float:left;
-    @include sans-font;
-    margin-top:0.2%;
-    margin-left:0.5%;
+// .top-bar {
+//   z-index:5;
+//  	background-color: #222;
+//  	color:white;	
+//  	height:100%;
+//  	width:100%;
+//  	display:inline-block;
+//  	padding: 1.5%;
+//  	.big_logo {
+//     @include sans-font;
+//  		font-size: 2rem;
+//     font-weight: bold;
+//  		float: left; 
+//  		a{
+//  			text-decoration: none;
+//  			color:white;
+//  		}
+//     a:hover {
+//       color:#06ac71;
+//     }
+//  	}
+//   #check_my_schedule {
+//     float:left;
+//     @include sans-font;
+//     margin-top:0.2%;
+//     margin-left:0.5%;
     
-      #check_my_schedule_button {
-         height:30px;
-         font-size:12px;
-         background-color:white;
-         -moz-border-radius: 5px;
-         -webkit-border-radius: 5px;
-         border-radius:6px;
-         color: #5a5960;
-         text-decoration: none;
-         cursor: pointer;
-         border:none;
-    }     #check_my_schedule_button:hover {
-            color:black;
-          }
-  }
-  #edit_my_profile {
-    float:left;
-    margin-left:3%;
-    margin-top:0.2%;
-    @include sans-font;
-      #edit_my_profile_button {
-         height:30px;
-         font-size:12px;
-         background-color: white;
-         -moz-border-radius: 5px;
-         -webkit-border-radius: 5px;
-         border-radius:6px;
-         color: #5a5960;
-         text-decoration: none;
-         cursor: pointer;
-         border:none;
-       }  #edit_my_profile_button:hover {
-            color:black;
-          }
-  }
-    #create_new_schedule {
-    float:left;
-    margin-top:0.2%;
-    @include sans-font;
-    margin-left:0.5%;
-      #create_new_schedule_button {
-         height:30px;
-         font-size:12px;
-         background-color: white;
-         -moz-border-radius: 5px;
-         -webkit-border-radius: 5px;
-         border-radius:6px;
-         color: #5a5960;
-         text-decoration: none;
-         cursor: pointer;
-         border:none;
-       }  #create_new_schedule_button:hover {
-            color:black;
-          }
-  }
- 	.login_details {
- 		position:relative;
- 		float:right;
-    margin-top:0.5%;
-    @include sans-font;
- 		a{
- 			text-decoration: none;
- 			color:white;
- 		}
- 	}
-}
+//       #check_my_schedule_button {
+//          height:30px;
+//          font-size:12px;
+//          background-color:white;
+//          -moz-border-radius: 5px;
+//          -webkit-border-radius: 5px;
+//          border-radius:6px;
+//          color: #5a5960;
+//          text-decoration: none;
+//          cursor: pointer;
+//          border:none;
+//     }     #check_my_schedule_button:hover {
+//             color:black;
+//           }
+//   }
+//   #edit_my_profile {
+//     float:left;
+//     margin-left:3%;
+//     margin-top:0.2%;
+//     @include sans-font;
+//   }
+//     #create_new_schedule {
+//     float:left;
+//     margin-top:0.2%;
+//     @include sans-font;
+//     margin-left:0.5%;
+//       #create_new_schedule_button {
+//          height:30px;
+//          font-size:12px;
+//          background-color: white;
+//          -moz-border-radius: 5px;
+//          -webkit-border-radius: 5px;
+//          border-radius:6px;
+//          color: #5a5960;
+//          text-decoration: none;
+//          cursor: pointer;
+//          border:none;
+//        }  #create_new_schedule_button:hover {
+//             color:black;
+//           }
+//   }
+//  	.login_details {
+//  		position:relative;
+//  		float:right;
+//     margin-top:0.5%;
+//     @include sans-font;
+//  		a{
+//  			text-decoration: none;
+//  			color:white;
+//  		}
+//  	}
+//   #login_form {
+//     position: relative;
+//     top: 100%;
 
-.ui.animated.fade.button {
-  padding:0%;
-  margin:0%;
-  background-color:white;
-  i {
-    font-size:22px;
-    width:100%;
-  }
-}
+//   }
+// }
+
+// .ui.animated.fade.button {
+//   padding:0%;
+//   margin:0%;
+//   background-color:white;
+//   i {
+//     font-size:22px;
+//     width:100%;
+//   }
+// }
+
+// #view_schedule_button, #change_availability_button {
+//   text-transform: none;
+//   font-weight: 400;
+// }
 

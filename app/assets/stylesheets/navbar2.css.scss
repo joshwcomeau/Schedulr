@@ -1,0 +1,66 @@
+@mixin sans-font {
+  font-family: hammersmith-one, sans-serif;
+}
+
+.navbar {
+  position: relative;
+  top: 0;
+  left: 0;
+  background: #222;
+  height: 3rem;
+}
+
+.main_logo {
+  @include sans-font;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 3rem;
+  position: absolute;
+  left: 2rem;
+  text-shadow: 1px 1px 1px #000; 
+  a {
+    text-decoration: none;
+    color: #FFF;
+  }
+  a:hover {
+    color:#06ac71;
+  }
+}
+
+.main_menu {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 2rem;
+  width: 3rem;
+  margin: auto;
+
+  #main_menu_button {
+    box-shadow: none; 
+    border: none;
+    outline: none;
+    color: #DDD;
+    font-size: 1.6rem;
+    line-height: 3rem;
+    padding: 0 0.5rem;
+    text-align: center;
+    transition: 0.2s;
+
+    & > i {
+      margin: 0;
+    }
+    #nav_menu {
+      width: 11rem;
+      margin-left: -8rem;
+    }  
+    &:hover {
+      background: rgba(255,255,255,0.2);
+      color: #FFF;
+    }
+    &.active {
+      background: #00B5AD;
+      color: #000;
+      transition: 0.2s;
+    }  
+  }
+}

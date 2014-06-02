@@ -1,5 +1,4 @@
 <h2>Schedulr, an Employee Scheduling App.</h2>
-==================
 
 Designed for small- to medium-sized businesses, Schedulr takes the hassle out of employee scheduling.
 
