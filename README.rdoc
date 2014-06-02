@@ -1,28 +1,7 @@
-== README
+Schedulr, an Employee Scheduling App.
+================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Designed for small- to medium-sized businesses, Schedulr takes the hassle out of employee scheduling.
 
-Things you may want to cover:
+After setting up an account, owners or managers can email sign-up links to their employees. Each employee has access to their own control panel, where they can set their availability and see their schedules. 
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
