@@ -494,3 +494,79 @@ body {
   background-color: #000;
   border: 1px solid #F00;
 }
+
+
+
+
+/* INDEX */
+
+.schedules_wrapper {
+  width: 640px;
+  margin: 25px auto;
+  padding: 1rem 2rem;
+  border: 1px solid #CCC;
+  border-radius: 2rem;
+  text-align: center;
+
+  & > h2 {
+
+    font-size: 3rem;
+    color: #277357;
+    margin-bottom: 15px;
+  }
+
+  .schedule_list {
+    display: inline-block;
+    width: 46%;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background: #EEE;
+    border: 1px solid #EEE;
+
+    & > .week_of_label {
+      font-size: 0.65rem;
+      color: #666;
+    }
+
+    & > .icon {
+      float: left;
+      font-size: 2rem;
+      margin: 5px;
+    }
+
+    & > a {
+      font-weight: bold;
+      transition: 0.2s;
+      color: #000;
+    }
+    & > a:hover {
+      color: #00B5AD;
+      transition: 0.2s;
+    }
+  }
+
+  .schedule_list:hover {
+    background: #FFF;
+  }
+}
+
+
+
+
+#view_next_week {
+  float: right; margin-right: 85px;
+}
+#view_last_week {
+  margin-left: 100px;
+}
+
+
+
+
+
+
+
+
+
+

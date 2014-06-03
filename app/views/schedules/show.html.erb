@@ -5,17 +5,27 @@
     <h4>Employee Info</h4>
   </div> -->
   <div class="button_next_week_container" style="text-align: left; margin-left: 68px; margin-right: 60px; position: relative; top: -40px;">
-    <div class="ui right labeled icon button" id="view_next_week" style="float: right;">
-      <i class="right arrow icon"></i>
-      Next Week
-    </div>
-
     <h2 style="color: #57C2B8; text-align: left;">Week of <%= @schedule.week_of %></h2>
   </div>
   <%= hidden_field_tag "open_hour", @earliest_open %>
   <%= hidden_field_tag "close_hour", @latest_close %>
   <%= render 'schedule' %>
 
+</div>
+
+<div class="navigation_arrow_buttons" style="margin-top: 15px;">
+  <% if @next_week %>
+    <%= link_to schedule_path(@next_week.week_of), id: "view_next_week", class: "ui right labeled icon button" do %>
+      <i class="right arrow icon"></i>
+      Next Week
+    <% end %>
+  <% end %>
+  <% if @last_week %>
+    <%= link_to schedule_path(@last_week.week_of), id: "view_last_week", class: "ui left labeled icon button" do %>
+      <i class="left arrow icon"></i>
+      Last Week
+    <% end %>
+  <% end %>
 </div>
 
 <div id="filler_div" style="position: relative; height: 75px;"></div>

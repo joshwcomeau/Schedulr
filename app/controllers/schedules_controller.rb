@@ -2,7 +2,7 @@ class SchedulesController < ApplicationController
   before_filter :require_login, :only => [:new, :index]
 
   def index
-    @schedules = Schedule.all
+    @schedules = Schedule.last(5)
   end
 
 
@@ -10,6 +10,9 @@ class SchedulesController < ApplicationController
     @schedule_day_formatted = Date.iso8601(params[:id])
     @schedule = Schedule.where("week_of = ?", @schedule_day_formatted).first
     @shifts = @schedule.shifts
+
+    @last_week = fetch_schedule(@schedule_day_formatted, -1)
+    @next_week = fetch_schedule(@schedule_day_formatted, 1)
 
 
     @location = @schedule.location
@@ -68,6 +71,21 @@ class SchedulesController < ApplicationController
   def schedule_params
     params.require(:schedule).require(:"0").permit(:week_of, :location_id)
   end
+
+  def current_week_number(date, backWeeks=0)
+    t = date + (7*backWeeks)
+    return t.cweek
+  end
+
+  def fetch_schedule(schedule_date, offset)
+    week = current_week_number(schedule_date, offset)
+    scheduleDate = Date.commercial(Date.today.year, week)
+    schedule = Schedule.where("week_of = ?", scheduleDate).last
+
+    return schedule if schedule
+    return nil
+  end
+
 
   # def shift_params(n)
   #   params.require(:schedule).require(n.to_sym).permit(:)

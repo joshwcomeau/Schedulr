@@ -1,0 +1,15 @@
+<div class="schedules_wrapper">
+  <h2>View Schedules:</h2>
+
+  <ul>
+    <% @schedules.each do |s| %>
+    <li class="schedule_list">
+      <i class="calendar icon"></i>
+      <span class="week_of_label">Week of</span>
+      <br>
+      <%= link_to s.week_of.to_formatted_s(:long_ordinal), schedule_path(s.week_of) %>
+    </li>
+    <% end %>
+  </ul>
+
+</div>

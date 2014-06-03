@@ -6,10 +6,9 @@ $(document).ready(function() {
 
   var page_id = $("#page_id").val();
 
-  $("#view_next_week").click(function() {
-    console.log("Cick")
-    document.location = "http://localhost:3000/schedules/2014-05-26";
-  });
+  // $("#view_next_week").click(function() {
+  //   document.location = "http://localhost:3000/schedules/2014-05-26";
+  // });
 
 
   // SCHEDULE MANAGEMENT
