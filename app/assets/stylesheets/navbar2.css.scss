@@ -4,15 +4,41 @@
 
 .navbar {
   position: relative;
+  z-index: 10;
   top: 0;
   left: 0;
   background: #222;
   height: 3rem;
 }
 
+.main_symbol {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1rem;
+
+  & > div {
+    position: relative;
+    width: 100%;
+    height: 1rem;
+    box-shadow: inset 0px -1px 0px rgba(0,0,0,0.25);
+  }
+
+  & > #bar1 {
+    background: #5BBD72;
+  }
+  & > #bar2 {
+    background: #00B5AD;
+  }
+  & > #bar3 {
+    background: #6ECFF5;
+  }
+
+}
+
 .main_logo {
   @include sans-font;
-  font-size: 2rem;
+  font-size: 1.85rem;
   font-weight: bold;
   line-height: 3rem;
   position: absolute;
@@ -21,9 +47,11 @@
   a {
     text-decoration: none;
     color: #FFF;
+    transition: 0.2s;
   }
   a:hover {
-    color:#06ac71;
+    transition: 0.2s;
+    color:#00B5AD;
   }
 }
 
@@ -49,9 +77,35 @@
     & > i {
       margin: 0;
     }
-    #nav_menu {
+    & > #nav_menu {
       width: 11rem;
       margin-left: -8rem;
+      & a {
+        display: block;
+        text-decoration: none;
+        border-bottom: 1px solid #EEE;
+      }
+      & a:last-child {
+        border-bottom: none;
+      }
+      &  .item:hover {
+        background: #00B5AD;
+        color: #FFF;
+
+        & > i {
+          opacity: 1;
+        }
+
+      }
+
+      &  .item.active {
+        background: #222;
+        color: #FFF;
+
+        & > i {
+          opacity: 1;
+        }
+      }
     }  
     &:hover {
       background: rgba(255,255,255,0.2);
@@ -64,3 +118,68 @@
     }  
   }
 }
+
+.login_links {
+  position: absolute;
+  right: 2em;
+  color: #DDD;
+  line-height: 3em;
+
+
+  & > a {
+    color: #FFF;
+
+    &:hover {
+      color: #00B5AD;
+    }
+  }
+}
+
+.login_form {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  right: 2rem;
+  background: #222;
+  padding: 1.5rem 2rem;
+  color: #CCC;
+  border-radius: 0 0 2rem 2rem;
+
+  & > .field {
+    margin-bottom: 0.5rem;
+  }
+
+  #login_email_field, #login_password_field, #login_submit_field {
+    font-size:0.8em; 
+    width: 16rem;
+  }
+
+  .login_register_link {
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 2rem;
+
+    & > a {
+      color: #FFF;
+      transition: 0.2s;
+    }
+    & > a:hover {
+      transition: 0.2s;
+      color:#00B5AD;
+    }
+  }
+}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+

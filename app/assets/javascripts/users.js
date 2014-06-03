@@ -4,8 +4,8 @@ $(document).ready(function() {
   $('#login_form').hide();
   $("#show_login_form").click(function(ev) {
     ev.preventDefault();
-    $("#login_links").fadeOut(300, function() {
-      $("#login_form").fadeIn(400);
+    $(".login_links").fadeOut(300, function() {
+      $(".login_form").slideDown(400);
     });
   })
 

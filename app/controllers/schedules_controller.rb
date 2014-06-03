@@ -1,5 +1,10 @@
 class SchedulesController < ApplicationController
-  before_filter :require_login, :only => :new 
+  before_filter :require_login, :only => [:new, :index]
+
+  def index
+    @schedules = Schedule.all
+  end
+
 
   def show
     @schedule_day_formatted = Date.iso8601(params[:id])
