@@ -41,24 +41,21 @@ class UsersController < ApplicationController
 
   end
 
-  # Custom route to show user control panel. Different depending on if the current user is an employee or manager.
-  def cp
-    @user = current_user
-  end
-
 
   def index
-    if current_user && current_user.manager
-      @users = User.all
-    elsif current_user 
-      redirect_to user_path(current_user)
-    else
-      redirect_to root_path
+    if current_user
+      @current_week = Date.today.beginning_of_week
+      if current_user.manager
+        @users = current_user.company.users
+        render :manager_cp
+      else
+        render :employee_cp
+      end
     end
   end
 
   def show
-    @current_week = Date.today.beginning_of_week
+    
   end
 
   def update

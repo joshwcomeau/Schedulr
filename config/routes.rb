@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   get 'schedule/:id' => 'schedules#show'
 
-  root 'users#show'
+  root 'users#index'
 
   get ':id/new' => 'companies#new_employee', as: "new_employee"
 

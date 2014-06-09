@@ -28,7 +28,7 @@ class SchedulesController < ApplicationController
     @location = @company.locations.first
     @earliest_open = @company.earliest_open(@location)
     @latest_close = @company.latest_close(@location)
-    render :layout => "no_top_bar"
+
   end
 
   def create

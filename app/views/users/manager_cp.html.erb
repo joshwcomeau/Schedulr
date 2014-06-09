@@ -1,0 +1,56 @@
+<div id="cp_wrapper">
+	<h1 class="manager_companyname"><%= current_user.company.name %></h1>
+	<div class="cp_header">
+		<div class="manager_userinfo">
+			<%= image_tag("#{current_user.image}") %><p>Shift Manager:</p>
+			<h4><%= "#{current_user.fname} #{current_user.lname}" %></h4>
+			<div class="manager_contactinfo">
+				<span>Email Address:</span> <%= current_user.email %><br>
+				<span>Phone Number:</span> <%= current_user.phone_number %><br>
+				<span>Street Address:</span> <%= current_user.address %>
+			</div>
+		</div>
+		<div class="manager_locationinfo">
+			<h4>Clark's Location(s):</h4>
+			<% current_user.company.locations.each do |l| %>
+				<div class="manager_location">
+					<h2><%= l.name %></h2>
+					<h4><%= l.address %></h4>
+					<div class="hoo">
+						<table class="hoo_table">
+							<tr>
+								<td><span>Monday:</span><%= hoo_format(l.monday_open, l.monday_close) %></td>
+							</tr>
+							<tr>
+								<td><span>Tuesday:</span><%= hoo_format(l.tuesday_open, l.tuesday_close) %></td>
+							</tr>
+							<tr>
+								<td><span>Wednesday:</span><%= hoo_format(l.wednesday_open, l.wednesday_close) %></td>
+							</tr>
+							<tr>
+								<td><span>Thursday:</span><%= hoo_format(l.thursday_open, l.thursday_close) %></td>
+							</tr>
+							<tr>
+								<td><span>Friday:</span><%= hoo_format(l.friday_open, l.friday_close) %></td>
+							</tr>
+							<tr>
+								<td><span>Saturday:</span><%= hoo_format(l.saturday_open, l.saturday_close) %></td>
+							</tr>
+							<tr>
+								<td><span>Sunday:</span><%= hoo_format(l.sunday_open, l.sunday_close) %></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			<% end %>
+		</div>
+
+	</div>
+</div>
+
+
+<style>
+body {
+	background: #333;
+}
+</style>
