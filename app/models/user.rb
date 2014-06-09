@@ -72,11 +72,11 @@ class User < ActiveRecord::Base
   end
 
   def totalShiftsScheduledFor
-    self.shifts.where("schedule_id = ?", get_schedule.id).count
+    get_schedule ? self.shifts.where("schedule_id = ?", get_schedule.id).count : 0
   end
 
   def totalShiftsThisWeek
-    self.schedules.where('location_id = ?', myLocationOfEmployment).count
+    self.schedules ? self.schedules.where('location_id = ?', myLocationOfEmployment).count : 0
   end
 
   def fnameCAP

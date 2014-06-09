@@ -424,6 +424,14 @@ body {
   #update_starting_button_container {
     margin-top: 2rem;
   }
+
+  #starting_stats_error {
+    display: none;
+    font-size: 1.5rem;
+    margin-top: 25px;
+    text-align: center;
+    color: #F00;
+  }
 }
 
 #finished_employees {

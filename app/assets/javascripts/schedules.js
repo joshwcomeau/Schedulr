@@ -42,9 +42,14 @@ $(document).ready(function() {
 
     // Assign event handler to the week/location starting form button
     $("#update_starting_stats").click(function() {
-      $("#week_of").val( $("#week_of_select").val() );
-      $("#location_id").val( $("#location_select").val() );
-      $("#get_week_and_location_backdrop").fadeOut(500);
+      if ( $("#week_of_select").val() != '' && $("#location_select").val()!= '' ) {
+
+        $("#week_of").val( $("#week_of_select").val() );
+        $("#location_id").val( $("#location_select").val() );
+        $("#get_week_and_location_backdrop").fadeOut(500);
+      } else {
+        $("#starting_stats_error").slideUp(150).slideDown(500);
+      }
     });
 
 
