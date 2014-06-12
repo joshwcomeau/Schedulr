@@ -1,22 +1,27 @@
 <div id="cp_wrapper">
 	<h1 class="manager_companyname"><%= current_user.company.name %></h1>
-	<div class="cp_header">
+	<div class="cp_section">
 		<div class="manager_userinfo">
 			<%= image_tag("#{current_user.image}") %><p>Shift Manager:</p>
 			<h4><%= "#{current_user.fname} #{current_user.lname}" %></h4>
+
+			<h5><%= current_user.fname %> manages <span><%= current_user.company.locations.count %></span> location with <span><%= current_user.company.users.count %></span> employees.</h5>
 			<div class="manager_contactinfo">
 				<span>Email Address:</span> <%= current_user.email %><br>
 				<span>Phone Number:</span> <%= current_user.phone_number %><br>
 				<span>Street Address:</span> <%= current_user.address %>
 			</div>
 		</div>
-		<div class="manager_locationinfo">
-			<h4>Clark's Location(s):</h4>
-			<% current_user.company.locations.each do |l| %>
-				<div class="manager_location">
-					<h2><%= l.name %></h2>
-					<h4><%= l.address %></h4>
-					<div class="hoo">
+	</div>
+
+	<h2 class="manager_cp_location_header"><%= current_user.fname %>'s Locations</h2>
+	
+	<div class="cp_section">	
+		<% current_user.company.locations.each do |l| %>
+			<div class="manager_location">
+				<div class="hours_of_operation">
+					<h4>Hours of Operation</h4>
+					<div class="hoo_table_wrapper">
 						<table class="hoo_table">
 							<tr>
 								<td><span>Monday:</span><%= hoo_format(l.monday_open, l.monday_close) %></td>
@@ -42,8 +47,19 @@
 						</table>
 					</div>
 				</div>
-			<% end %>
-		</div>
+				<h2><%= l.name %> <span><%= l.address %></span></h2>
+				<h3>Employees at this location:</h3>
+				<div class="manager_cp_employees_wrapper">
+					<% current_user.company.users.each do |e| %>
+						<div class="location_employee">
+							<%= image_tag(e.image) %>
+							<h4><%= "#{e.fname} #{e.lname}" %></h4>
+						</div>
+					<% end %>
+
+				</div>
+			</div>
+		<% end %>
 
 	</div>
 </div>
